@@ -1,0 +1,6 @@
+<div class="row g-5 py-5">
+    <div *ngFor="let item of category" class="product p-3 cursor-pointer rounded-2 col-md-3">
+    <img class="w-100" height="400" [src]="item.image" alt="">
+   <h2 class="h3 text-center">{{item.name}}</h2> 
+</div>
+</div>

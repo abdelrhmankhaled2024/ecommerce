@@ -1,0 +1,54 @@
+<div class="container py-4">
+  <h4>Login Now:</h4>
+  
+  <form (ngSubmit)="handlLogin(loginForm)" class="py-3" [formGroup]="loginForm">
+    <label for="email">User Email:</label>
+    <input
+      formControlName="email"
+      type="email"
+      class="form-control my-2"
+      placeholder="Enter Your Email.."
+      id="email"
+    />
+    <div
+      class="alert alert-danger"
+      *ngIf="loginForm.get('email')?.errors && loginForm.get('email')?.touched"
+    >
+      <p *ngIf="loginForm.get('email')?.getError('email')" class="m-0">
+        This Mail is Incorrect
+      </p>
+      <p *ngIf="loginForm.get('email')?.getError('required')" class="m-0">
+        Email is Required !!
+      </p>
+    </div>
+    <label for="password">User Password:</label>
+    <input
+      formControlName="password"
+      type="password"
+      class="form-control my-2"
+      placeholder="Password"
+      id="password"
+    />
+    <div
+      class="alert alert-danger"
+      *ngIf="
+        loginForm.get('password')?.errors && loginForm.get('password')?.touched
+      "
+    >
+      <p *ngIf="loginForm.get('password')?.getError('required')" class="m-0">
+        Password is Required !!
+      </p>
+    </div>
+    <div class="w-100 alert alert-danger" *ngIf="apiError">
+      <span>{{ apiError }}</span>
+    </div>
+    <button
+      [disabled]="!loginForm.valid"
+      type="submit"
+      class="btn btn-success text-light border-0 rounded-3 p-2 text-light my-4"
+    >
+      <i *ngIf="isLoading" class="fas fa-spinner fa-spin"></i>
+      <span *ngIf="!isLoading">Signin</span>
+    </button>
+  </form>
+</div>

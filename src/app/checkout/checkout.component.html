@@ -1,0 +1,29 @@
+<div class="w-50 mx-auto my-5">
+  <form
+    [formGroup]="shippingAddress"
+    (ngSubmit)="handleSumbit(shippingAddress)"
+  >
+    <label for="phone">Phone number</label>
+    <input
+      type="tel"
+      class="form-control mb-2"
+      formControlName="phone"
+      id="phone"
+    />
+    <label for="city">City</label>
+    <input
+      type="text"
+      class="form-control mb-2"
+      formControlName="city"
+      id="city"
+    />
+    <label for="details">Details</label>
+    <input
+      type="text"
+      class="form-control mb-2"
+      formControlName="details"
+      id="details"
+    />
+    <button class="btn bg-main text-white w-100 " type="submit">Make Payment</button>
+  </form>
+</div>

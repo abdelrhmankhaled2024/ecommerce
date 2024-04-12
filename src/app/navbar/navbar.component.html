@@ -1,0 +1,112 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary py-2">
+  <div class="container">
+    <a class="navbar-brand"
+      ><img src="../../assets/images/freshcart-logo.svg" alt="cart"
+    /></a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarSupportedContent"
+      aria-controls="navbarSupportedContent"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li *ngIf="isLogin" class="nav-item">
+          <a
+            class="nav-link fw-bold px-2"
+            aria-current="page"
+            routerLink="/home"
+            >Home</a
+          >
+        </li>
+        <li *ngIf="isLogin" class="nav-item">
+          <a
+            class="nav-link fw-bold px-2"
+            routerLink="/cart"
+            >Cart</a
+          >
+        </li>
+        <li *ngIf="isLogin" class="nav-item">
+          <a
+            class="nav-link fw-bold px-2"
+            routerLink="/products"
+            >Products</a
+          >
+        </li>
+        <li *ngIf="isLogin" class="nav-item">
+          <a
+            class="nav-link fw-bold px-2"
+            routerLink="/categories"
+            >Categories</a
+          >
+        </li>
+        <li *ngIf="isLogin" class="nav-item">
+          <a
+            class="nav-link fw-bold px-2"
+            routerLink="/brands"
+            >Brands</a
+          >
+        </li>
+      </ul>
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link" target="_blank" href="https://www.instagram.com/"
+            ><i class="fa-brands fa-instagram text-black"></i
+          ></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" target="_blank" href="https://www.facebook.com/"
+            ><i class="fa-brands fa-facebook text-black"></i
+          ></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" target="_blank" href="https://www.tiktok.com/"
+            ><i class="fa-brands fa-tiktok text-black"></i
+          ></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" target="_blank" href="https://www.twitter.com/"
+            ><i class="fa-brands fa-twitter text-black"></i
+          ></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" target="_blank" href="https://www.linkedin.com/"
+            ><i class="fa-brands fa-linkedin text-black"></i
+          ></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" target="_blank" href="https://www.youtube.com/"
+            ><i class="fa-brands fa-youtube text-black"></i
+          ></a>
+        </li>
+        <li *ngIf="!isLogin" class="nav-item">
+          <a class="nav-link fw-bold" routerLink="/signin">SignIn</a>
+        </li>
+        <li *ngIf="!isLogin" class="nav-item fw-bold">
+          <a class="nav-link fw-bold" routerLink="/signup">Register</a>
+        </li>
+        <li *ngIf="isLogin" class="nav-item m-0 px-1">
+          <a class="nav-link fw-bold px-2 " routerLink="/cart">
+            <button type="button" class="btn m-0 px-2 position-relative border-0 ">
+              Cart<i class="fa-solid fa-cart-shopping"></i>
+              <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                {{cartNumber}}
+                <span class="visually-hidden">unread messages</span>
+              </span>
+            </button>
+          </a>
+        </li>
+        
+        <li *ngIf="isLogin" class="nav-item">
+          <button (click)="logOut()" class="nav-link fw-bold">LogOut</button>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+

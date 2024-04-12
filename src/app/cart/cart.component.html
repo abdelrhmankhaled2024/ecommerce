@@ -1,0 +1,55 @@
+<div class="bg-main-light p-4 my-4">
+  <h3>Shop Cart</h3>
+  <div class="m-auto text-center" *ngIf="cartDetails?.totalCartPrice == 0">
+    <h5 class="h1 text-secondary">Your cart is empty!!</h5>
+  </div>
+  <div *ngIf="cartDetails?.totalCartPrice > 0">
+    <h6 class="text-main">
+      Total Price: {{ cartDetails?.totalCartPrice }} EGP
+    </h6>
+    <div
+      *ngFor="let product of cartDetails?.products"
+      class="row border-bottom py-3 align-items-center"
+    >
+      <div class="col-md-1">
+        <a [routerLink]="['/productdetails', product.product._id]"
+          ><img class="w-100" [src]="product?.product?.imageCover"
+        /></a>
+      </div>
+      <div class="col-md-11 d-flex justify-content-between">
+        <div>
+          <h6>{{ product.product.title.split(" ").slice(0, 2).join(" ") }}</h6>
+          <h6 class="text-main">Price: {{ product.price }}</h6>
+          <button
+            (click)="removeItemFromCart(product.product._id)"
+            class="btn btn-danger"
+          >
+            <i class="fa-solid fa-trash"></i> Remove
+          </button>
+        </div>
+        <div>
+          <button
+            (click)="updateItemCount(product.product._id, product.count + 1)"
+            class="btn fs-6 border border-success rounded-2"
+          >
+            +
+          </button>
+          <span class="mx-2">{{ product.count }}</span>
+          <button
+            [disabled]="product.count <= 1"
+            (click)="updateItemCount(product.product._id, product.count - 1)"
+            class="btn fs-6 border border-success rounded-2"
+          >
+            -
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="cartDetails?.totalCartPrice > 0" class="w-100">
+  <button  routerLink="/checkout" class="w-100 btn bg-main text-white" >Online Payment <img height="20" src="../../assets/images/card-visa.png" >
+    <img height="20" src="../../assets/images/card-mastercard.png" >
+  </button>
+  </div>
+  
+</div>

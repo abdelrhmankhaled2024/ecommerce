@@ -1,0 +1,155 @@
+<div class="container py-4">
+  <h4>Register Now:</h4>
+  <div *ngIf="apiError" class="alert alert-danger">
+    {{ apiError }}
+  </div>
+  <form
+    (ngSubmit)="handlRegister(registrationForm)"
+    class="py-3"
+    [formGroup]="registrationForm"
+  >
+    <label for="name">User Name:</label>
+    <input
+      formControlName="name"
+      type="text"
+      class="form-control my-2"
+      placeholder="Enter Your Name.."
+      id="name"
+    />
+    <div
+      class="alert alert-danger"
+      *ngIf="
+        registrationForm.get('name')?.errors &&
+        registrationForm.get('name')?.touched
+      "
+    >
+      <p
+        *ngIf="registrationForm.get('name')?.getError('minlength')"
+        class="m-0"
+      >
+        Name is too Short
+      </p>
+      <p
+        *ngIf="registrationForm.get('name')?.getError('maxlength')"
+        class="m-0"
+      >
+        Name is too Long
+      </p>
+      <p *ngIf="registrationForm.get('name')?.getError('required')" class="m-0">
+        Name is Required !!
+      </p>
+    </div>
+    <label for="email">User Email:</label>
+    <input
+      formControlName="email"
+      type="email"
+      class="form-control my-2"
+      placeholder="Enter Your Email.."
+      id="email"
+    />
+    <div
+      class="alert alert-danger"
+      *ngIf="
+        registrationForm.get('email')?.errors &&
+        registrationForm.get('email')?.touched
+      "
+    >
+      <p *ngIf="registrationForm.get('email')?.getError('email')" class="m-0">
+        This Mail is Incorrect
+      </p>
+      <p
+        *ngIf="registrationForm.get('email')?.getError('required')"
+        class="m-0"
+      >
+        Email is Required !!
+      </p>
+    </div>
+    <label for="password">User Password:</label>
+    <input
+      formControlName="password"
+      type="password"
+      class="form-control my-2"
+      placeholder="Password"
+      id="password"
+    />
+    <div
+      class="alert alert-danger"
+      *ngIf="
+        registrationForm.get('password')?.errors &&
+        registrationForm.get('password')?.touched
+      "
+    >
+      <p
+        *ngIf="registrationForm.get('password')?.getError('pattern')"
+        class="m-0"
+      >
+        The passowrd must contain at least 8 characters, one number and one
+        uppercase character
+      </p>
+      <p
+        *ngIf="registrationForm.get('password')?.getError('required')"
+        class="m-0"
+      >
+        Password is Required !!
+      </p>
+    </div>
+    <label for="rePassword">Repassword:</label>
+    <input
+      formControlName="rePassword"
+      type="password"
+      class="form-control my-2"
+      placeholder="Repassword"
+      id="rePassword"
+    />
+    <div
+      class="alert alert-danger"
+      *ngIf="
+        registrationForm.get('rePassword')?.errors &&
+        registrationForm.get('rePassword')?.touched
+      "
+    >
+      <p class="m-0" *ngIf="registrationForm.errors?.['passwordmatcherror']">
+        Password does not match
+      </p>
+      <p
+        *ngIf="registrationForm.get('rePassword')?.getError('required')"
+        class="m-0"
+      >
+        Repassword is Required !!
+      </p>
+    </div>
+    <label for="phone">Phone Number:</label>
+    <input
+      formControlName="phone"
+      type="tel"
+      class="form-control my-2"
+      placeholder="Enter Your Phone Number.."
+      id="phone"
+    />
+    <div
+      class="alert alert-danger"
+      *ngIf="
+        registrationForm.get('phone')?.errors &&
+        registrationForm.get('phone')?.touched
+      "
+    >
+      <p *ngIf="registrationForm.get('phone')?.getError('pattern')" class="m-0">
+        Invalid Phone Number !!
+      </p>
+      <p
+        *ngIf="registrationForm.get('phone')?.getError('required')"
+        class="m-0"
+      >
+        Phone Number is Required...
+      </p>
+    </div>
+    <button
+      [disabled]="!registrationForm.valid"
+      type="submit"
+      class="btn btn-success text-light border-0 rounded-3 p-2 text-light my-4"
+    >
+      <i *ngIf="isLoading" class="fas fa-spinner fa-spin"></i>
+      <span *ngIf="!isLoading">Register</span>
+    </button>
+  </form>
+</div>
